@@ -23,7 +23,8 @@ const OUT_FILE = path.join(OUT_DIR, "entry.txt");
 
 function main(): void {
   // Gate check, same as the competition's sealed scorer: UTF-8 text of
-  // 1 to 30 characters, not only white space.
+  // 1 to 30 characters, not only white space. The check runs before any
+  // write, so a word that fails the gate never reaches the file.
   const chars = [...ENTRY].length;
   if (chars < 1 || chars > 30) {
     throw new Error(`entry is ${chars} characters, must be 1-30`);
